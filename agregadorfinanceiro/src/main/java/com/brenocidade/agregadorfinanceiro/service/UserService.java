@@ -1,6 +1,7 @@
 package com.brenocidade.agregadorfinanceiro.service;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -31,5 +32,10 @@ public class UserService {
         var userSaved = userRepository.save(entity);
 
         return userSaved.getUserId();
+    }
+
+    public Optional<User> getUserById(String userId) {
+
+        return userRepository.findById(UUID.fromString(userId));
     }
 }
