@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.brenocidade.agregadorfinanceiro.controller.CreateUserDto;
+import com.brenocidade.agregadorfinanceiro.controller.UpdateUserDto;
 import com.brenocidade.agregadorfinanceiro.entity.User;
 import com.brenocidade.agregadorfinanceiro.repository.UserRepository;
 
@@ -42,6 +43,30 @@ public class UserService {
 
     public List<User> listUsers() {
         return userRepository.findAll();
+    }
+
+    public void updateUserById(String userId, UpdateUserDto updateUserDto) {
+        var id = UUID.fromString(userId);
+
+        var userEntity = userRepository.findById(id);
+
+        if (userEntity.isPresent()) {
+            var user = userEntity.get();
+
+            if (updateUserDto.username() != null) {
+                user.setUsername(updateUserDto.username());
+            }
+
+            if (updateUserDto.password() != null) {
+                user.setPassword(updateUserDto.password());
+            }
+
+            if (updateUserDto.email() != null) {
+                user.setEmail(updateUserDto.email());
+            }
+
+            userRepository.save(user);
+        }
     }
 
     public void deleteById(String userId) {
