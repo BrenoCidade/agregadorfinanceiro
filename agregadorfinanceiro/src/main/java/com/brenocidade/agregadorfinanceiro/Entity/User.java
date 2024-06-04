@@ -1,4 +1,4 @@
-package com.brenocidade.agregadorfinanceiro.Entity;
+package com.brenocidade.agregadorfinanceiro.entity;
 
 import java.time.Instant;
 import java.util.UUID;
