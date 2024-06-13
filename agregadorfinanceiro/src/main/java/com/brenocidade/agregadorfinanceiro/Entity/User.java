@@ -1,17 +1,12 @@
 package com.brenocidade.agregadorfinanceiro.entity;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_users")
@@ -35,6 +30,9 @@ public class User {
 
     @UpdateTimestamp
     private Instant updatedTime;
+
+    @OneToMany(mappedBy = "user")
+    private List<Account> accounts;
 
     public User() {
     }
@@ -97,4 +95,11 @@ public class User {
         this.updatedTime = updatedTime;
     }
 
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 }
