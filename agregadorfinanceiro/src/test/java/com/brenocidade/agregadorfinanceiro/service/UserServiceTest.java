@@ -23,8 +23,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.brenocidade.agregadorfinanceiro.controller.CreateUserDto;
-import com.brenocidade.agregadorfinanceiro.controller.UpdateUserDto;
+import com.brenocidade.agregadorfinanceiro.controller.dto.CreateUserDto;
+import com.brenocidade.agregadorfinanceiro.controller.dto.UpdateUserDto;
 import com.brenocidade.agregadorfinanceiro.entity.User;
 import com.brenocidade.agregadorfinanceiro.repository.UserRepository;
 

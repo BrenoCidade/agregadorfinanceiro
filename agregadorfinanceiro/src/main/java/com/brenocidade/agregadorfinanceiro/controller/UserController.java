@@ -3,6 +3,10 @@ package com.brenocidade.agregadorfinanceiro.controller;
 import java.net.URI;
 import java.util.List;
 
+import com.brenocidade.agregadorfinanceiro.controller.dto.AccountResponseDto;
+import com.brenocidade.agregadorfinanceiro.controller.dto.CreateAccountDto;
+import com.brenocidade.agregadorfinanceiro.controller.dto.CreateUserDto;
+import com.brenocidade.agregadorfinanceiro.controller.dto.UpdateUserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,5 +65,21 @@ public class UserController {
     public ResponseEntity<Void> deleteById(@PathVariable("userId") String userId) { 
         userService.deleteById(userId);
         return ResponseEntity.noContent().build();
-    }     
+    }
+
+    @PostMapping("/{userId}/accounts")
+    public ResponseEntity<Void> createAccountById(@PathVariable("userId") String userId,
+                                           @RequestBody CreateAccountDto createAccountDto) {
+
+        userService.createAccount(userId, createAccountDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{userId}/accounts")
+    public ResponseEntity<List<AccountResponseDto>> listAccounts(@PathVariable("userId") String userId){
+
+        var accounts = userService.listAccounts(userId);
+
+        return ResponseEntity.ok(accounts);
+    }
 }
